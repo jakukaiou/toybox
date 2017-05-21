@@ -6,8 +6,8 @@ var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 
 var devConfig = {
     entry: {
-        page1: ['./client/page1', hotMiddlewareScript],
-        page2: ['./client/page2', hotMiddlewareScript]
+        page1: ['./client/page1/index.ts', hotMiddlewareScript],
+        page2: ['./client/page2/index.ts', hotMiddlewareScript]
     },
     output: {
         filename: './[name]/bundle.js',
@@ -27,6 +27,12 @@ var devConfig = {
                 'resolve-url-loader',
                 'sass-loader?sourceMap'
             ]
+        },{
+            test: /\.ts$/,
+            use: 'awesome-typescript-loader'
+        },{
+            test: /\.html$/,
+            use: 'file-loader'
         }]
     },
     plugins: [

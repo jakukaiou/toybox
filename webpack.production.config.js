@@ -4,8 +4,8 @@ var CleanWebpackPlugin = require('clean-webpack-plugin');
 
 var productionConfig = [{
     entry: {
-        page1: './client/page1',
-        page2: './client/page2'
+        page1: './client/page1/index.ts',
+        page2: './client/page2/index.ts'
     },
     output: {
         filename: './[name]/bundle.js',
@@ -24,10 +24,10 @@ var productionConfig = [{
             })
         }, {
             test: /\.html$/,
-            use: ExtractTextPlugin.extract({
-                fallback: 'style-loader',
-                use: 'file-loader?context=client&name=[path][name].[ext]'
-            })
+            use: 'file-loader?context=client&name=[path][name].[ext]'
+        },{
+            test: /\.ts$/,
+            use: 'awesome-typescript-loader'
         }]
     },
     plugins: [
