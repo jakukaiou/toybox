@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>example - cms</title>
+    <% if (env === "production") { %>
+        <link rel="stylesheet" href="/cms/index.css">
+    <% } %>
+</head>
+<body>
+    <title>ToyBoxCMS</title>
+    <script src="/cms/bundle.js"></script>
+    <% if (env !== "production" && reload === true) { %>
+        <script src="/reload/reload.js"></script>
+    <% } %>
+</body>
+</html>

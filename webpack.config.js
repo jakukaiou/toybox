@@ -7,12 +7,16 @@ var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 var devConfig = {
     entry: {
         page1: ['./client/page1/index.ts', hotMiddlewareScript],
-        page2: ['./client/page2/index.ts', hotMiddlewareScript]
+        cms: ['./client/cms/index.ts', hotMiddlewareScript],
+        site: ['./client/site/index.ts', hotMiddlewareScript]
     },
     output: {
         filename: './[name]/bundle.js',
         path: path.resolve(__dirname, './public'),
         publicPath: publicPath
+    },
+    resolve: {
+        extensions: ['.jpg','.png','.html','.ts', '.webpack.js', '.web.js', '.js']
     },
     devtool: 'eval-source-map',
     module: {

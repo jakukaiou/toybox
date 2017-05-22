@@ -5,12 +5,16 @@ var CleanWebpackPlugin = require('clean-webpack-plugin');
 var productionConfig = [{
     entry: {
         page1: './client/page1/index.ts',
-        page2: './client/page2/index.ts'
+        cms: './client/cms/index.ts',
+        site: './client/site/index.ts'
     },
     output: {
         filename: './[name]/bundle.js',
         path: path.resolve(__dirname, './public'),
         publicPath: '/'
+    },
+    resolve: {
+        extensions: ['.jpg','.png','.html','.ts', '.webpack.js', '.web.js', '.js']
     },
     module: {
         rules: [{
