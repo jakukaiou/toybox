@@ -1,0 +1,43 @@
+.c-toybox_siteTitleBar {
+    border-bottom: groove 1px rgba(0, 0, 0, 0.15);
+    background-color: #d8d8d8;
+    display: flex;
+}
+
+.c-toybox_siteTitle.is-edit {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.c-toybox_sideToolbar {
+    display: none;
+}
+
+.c-toybox_sideToolbar.is-active {
+    display: block;
+}
+
+.c-toybox_sideToolbar .icon {
+    width: 32px;
+}
+
+.c-toybox_sideToolbar .icon .fa.fa-plus {
+    font-size: 12px;
+    margin-right: 2px;
+}
+
+
+.c-toybox_treeItem {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.c-toybox_treeItem .description {
+    font-size: 12px;
+}
+
+.c-toybox_treeItem .c-toybox_treeItem {
+    padding-left: 16px;
+}

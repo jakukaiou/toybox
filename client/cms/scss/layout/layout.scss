@@ -1,0 +1,72 @@
+.l-toybox_nav {
+    height: 60px;
+    background-color: #333333;
+}
+
+.l-toybox_side {
+    width: 0px;
+    height: 100%;
+    background-color: #e8e8e8;
+    transition-duration: 0.2s;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.l-toybox_side.is-active {
+    width: 200px;
+}
+
+.l-toybox_side .icon .fa {
+    font-size: 15px;
+}
+
+.l-toybox_sideResizer {
+    width: 32px;
+    height: 100%;
+    border-right: groove 1px rgba(0, 0, 0, 0.04);
+    background-color: #c9c9c9;
+}
+
+.l-toybox_sideResizeToggle {
+    background-color: #c9c9c9;
+    height: 40px;
+    max-height: 40px;
+    font-size: 24px;
+    color: #999999;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.l-toybox_sideResizeToggle i {
+    margin-top: 6px;
+}
+
+.l-toybox_sideResizeToggle:hover {
+    background-color: #a8a8a8;
+    color: #ffffff;
+}
+
+.l-toybox_mainResizeArea {
+    width: 32px;
+}
+
+.l-toybox_mainView {
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    display: flex;
+}
+
+.l-toybox_mainEditArea {
+    flex: 1;
+    border-right: groove 1px rgba(0, 0, 0, 0.2);
+    overflow-y: scroll;
+}
+
+.l-toybox_previewArea {
+    flex: 1;
+    overflow-y: scroll;
+}

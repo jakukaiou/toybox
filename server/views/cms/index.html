@@ -13,5 +13,199 @@
     <% if (env !== "production" && reload === true) { %>
         <script src="/reload/reload.js"></script>
     <% } %>
+    <nav class="nav l-toybox_nav">
+        <div class="nav-left">
+            <a class="nav-item">
+            <!--
+            <img src="toybox.svg" width="50px" height="50px">
+            -->
+            <span class="c-toybox_name">
+                ToyBox
+            </span>
+            </a>
+        </div>
+
+        <div class="nav-center">
+            <a class="nav-item c-toybox_target">
+                Edit Target
+            </a>
+        </div>
+        <span class="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <div class="nav-right nav-menu">
+            <div class="nav-item">
+                <div class="field is-grouped">
+                    <p class="control">
+                        <a class="c-toybox_saveButton button is-info" >
+                            <span class="icon">
+                                <i class="fa fa-floppy-o"></i>
+                            </span>
+                            <span class="description">
+                                Save
+                            </span>
+                        </a>
+                    </p>
+                    <p class="control">
+                        <a class="c-toybox_deleteButton button is-danger">
+                            <span class="icon">
+                                <i class="fa fa-cut"></i>
+                            </span>
+                            <span class="description">
+                                Delete
+                            </span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="f-toybox_base-container">
+        <div class="f-toybox_side-container">
+            <div class="l-toybox_side is-active">
+                <div class="c-toybox_siteTitleBar">
+                    <div class="c-toybox_siteTitle is-edit">
+                        <span class="icon">
+                            <i class="fa fa-caret-down"></i>
+                        </span>
+                        <span class="description">
+                        This is super great web site
+                        <span>
+                    </div>
+                    <div class="c-toybox_sideToolbar is-active">
+                        <span class="icon">
+                            <i class="fa fa-plus"></i>
+                            <i class="fa fa-folder"></i>
+                        </span>
+                        <span class="icon">
+                            <i class="fa fa-plus"></i>
+                            <i class="fa fa-file"></i>
+                        </span>
+                        <span class="icon">
+                            <i class="fa fa-plus"></i>
+                            <i class="fa fa-gear"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="l-toybox_fileTree">
+                    <div class="c-toybox_treeItem c-toybox_dir">
+                        <div class="c-toybox_dirName">
+                            <span class="icon">
+                                <i class="fa fa-folder-open"></i>
+                            </span>
+                            <span class="description">
+                                Test Open Folder
+                            <span>
+                        </div>
+                        <div class="l-toybox_files">
+                            <div class="c-toybox_treeItem c-toybox_file">
+                                <span class="icon">
+                                    <i class="fa fa-file"></i>
+                                </span>
+                                <span class="description">
+                                    Test File
+                                <span>
+                            </div>
+                            <div class="c-toybox_treeItem c-toybox_file">
+                                <span class="icon">
+                                    <i class="fa fa-file"></i>
+                                </span>
+                                <span class="description">
+                                    Test File
+                                <span>
+                            </div>
+                            <div class="c-toybox_treeItem c-toybox_dir">
+                                <div class="c-toybox_dirName">
+                                    <span class="icon">
+                                        <i class="fa fa-folder-open"></i>
+                                    </span>
+                                    <span class="description">
+                                        Test Open Folder
+                                    <span>
+                                </div>
+                                <div class="l-toybox_files">
+                                    <div class="c-toybox_treeItem c-toybox_file">
+                                        <span class="icon">
+                                            <i class="fa fa-file"></i>
+                                        </span>
+                                        <span class="description">
+                                            ギャラクティカマグナム
+                                        <span>
+                                    </div>
+                                    <div class="c-toybox_treeItem c-toybox_file">
+                                        <span class="icon">
+                                            <i class="fa fa-file"></i>
+                                        </span>
+                                        <span class="description">
+                                            Test File
+                                        <span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="c-toybox_treeItem c-toybox_config">
+                        <span class="icon">
+                            <i class="fa fa-gear"></i>
+                        </span>
+                        <span class="description">
+                            Test Config
+                        <span>
+                    </div>
+                </div>
+            </div>
+            <div class="l-toybox_sideResizer">
+                <div class="l-toybox_sideResizeToggle">
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+        <div class="f-toybox_mainView-container">
+            <div class="l-toybox_mainResizeArea"></div>
+            <div class="l-toybox_mainView">
+                <!--contentEdit画面-->
+                <div class="l-toybox_mainEditArea">
+                    <div class="toybox-editors">
+                        <div id="component-edit0" class="toybox-editor">
+                            <div class="editorHead">
+                                <div class="editorTitle">
+                                    markdown
+                                </div>
+                                <a class="editorClose">
+                                    <span class="icon">
+                                        <i class="fa fa-times"></i>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="editorEditArea">
+                                editorEditArea
+                            </div>
+                        </div>
+                        <div id="component-edit0" class="toybox-editor">
+                            <div class="editorHead">
+                                <div class="editorTitle">
+                                    markdown
+                                </div>
+                                <a class="editorClose">
+                                    <span class="icon">
+                                        <i class="fa fa-times"></i>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="editorEditArea">
+                                editorEditArea
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="l-toybox_previewArea">
+                    preview
+                </div>
+                <!--end-->
+            </div>
+        </div>
+    </div>
 </body>
 </html>

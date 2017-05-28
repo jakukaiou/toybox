@@ -1,0 +1,7 @@
+[デプロイ手順]
+1. npm run production
+2. firebase deoloy
+
+[TODO]
+CMSレイアウト作成
+firebase databaseへ投入

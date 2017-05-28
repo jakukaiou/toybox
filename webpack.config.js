@@ -16,7 +16,7 @@ var devConfig = {
         publicPath: publicPath
     },
     resolve: {
-        extensions: ['.jpg','.png','.html','.ts', '.webpack.js', '.web.js', '.js']
+        extensions: ['.jpg','.png','.html','.svg','.eot','.ttf','.woff','.ts', '.webpack.js', '.web.js', '.js']
     },
     devtool: 'eval-source-map',
     module: {
@@ -35,8 +35,14 @@ var devConfig = {
             test: /\.ts$/,
             use: 'awesome-typescript-loader'
         },{
-            test: /\.html$/,
+            test: /\.(html)$/,
             use: 'file-loader'
+        },{ 
+            test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
+            loader: "url-loader?limit=10000&mimetype=application/font-woff" 
+        },{ 
+            test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
+            loader: "file-loader" 
         }]
     },
     plugins: [
