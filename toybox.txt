@@ -3,5 +3,7 @@
 2. firebase deoloy
 
 [TODO]
+fontawesome関連webpack設定
 CMSレイアウト作成
+-configレイアウト作成
 firebase databaseへ投入

@@ -36,25 +36,26 @@
             <span></span>
         </span>
         <div class="nav-right nav-menu">
+            <!--このボタンはコンテンツエディットの時限定にする？-->
             <div class="nav-item">
                 <div class="field is-grouped">
                     <p class="control">
-                        <a class="c-toybox_saveButton button is-info" >
+                        <a class="c-toybox_saveButton button" >
                             <span class="icon">
                                 <i class="fa fa-floppy-o"></i>
                             </span>
                             <span class="description">
-                                Save
+                                保存
                             </span>
                         </a>
                     </p>
                     <p class="control">
-                        <a class="c-toybox_deleteButton button is-danger">
+                        <a class="c-toybox_deleteButton button">
                             <span class="icon">
                                 <i class="fa fa-cut"></i>
                             </span>
                             <span class="description">
-                                Delete
+                                削除
                             </span>
                         </a>
                     </p>
@@ -105,7 +106,7 @@
                                     <i class="fa fa-file"></i>
                                 </span>
                                 <span class="description">
-                                    Test File
+                                    Test File 1
                                 <span>
                             </div>
                             <div class="c-toybox_treeItem c-toybox_file">
@@ -113,7 +114,7 @@
                                     <i class="fa fa-file"></i>
                                 </span>
                                 <span class="description">
-                                    Test File
+                                    Test File 2
                                 <span>
                             </div>
                             <div class="c-toybox_treeItem c-toybox_dir">
@@ -131,7 +132,7 @@
                                             <i class="fa fa-file"></i>
                                         </span>
                                         <span class="description">
-                                            ギャラクティカマグナム
+                                            Test File 3
                                         <span>
                                     </div>
                                     <div class="c-toybox_treeItem c-toybox_file">
@@ -139,7 +140,7 @@
                                             <i class="fa fa-file"></i>
                                         </span>
                                         <span class="description">
-                                            Test File
+                                            Test File 4
                                         <span>
                                     </div>
                                 </div>
@@ -163,38 +164,389 @@
             </div>
         </div>
         <div class="f-toybox_mainView-container">
-            <div class="l-toybox_mainResizeArea"></div>
+            <div class="l-toybox_mainResizeArea is-config"></div>
             <div class="l-toybox_mainView">
-                <!--contentEdit画面-->
-                <div class="l-toybox_mainEditArea">
-                    <div class="toybox-editors">
-                        <div id="component-edit0" class="toybox-editor">
-                            <div class="editorHead">
-                                <div class="editorTitle">
-                                    markdown
+                <!--file edit画面
+                <div class="l-toybox_configEditArea">
+                    <div class="c-toybox_configTitle">
+                        <span class="icon">
+                            <i class="fa fa-file"></i>
+                        </span>
+                        <span class="description">
+                            File
+                        <span>
+                    </div>
+                    <div class="l-toybox_configPropEditArea">
+                        <div class="c-toybox_configPropTitle">
+                            <span class="icon">
+                                <i class="fa fa-tags"></i>
+                            </span>
+                            <span class="description">
+                                Tag
+                            <span>
+                        </div>
+                        <div class="c-toybox_itemTagConfigs">
+                            <div class="c-toybox_tagConfig">
+                                <div class="c-toybox_configPropTitleContainer">
+                                    <div class="c-toybox_configPropTitle">
+                                        test tag
+                                    </div>
                                 </div>
-                                <a class="editorClose">
-                                    <span class="icon">
-                                        <i class="fa fa-times"></i>
+                                <div class="c-toybox_taglist">
+                                    <span class="tag is-primary">
+                                        <span class="description">
+                                        Primary
+                                        </span>
+                                        <button class="delete is-small"></button>
                                     </span>
-                                </a>
+                                    <span class="tag is-primary">
+                                        <span class="description">
+                                        Primary
+                                        </span>
+                                        <button class="delete is-small"></button>
+                                    </span>
+                                    <span class="tag is-primary">
+                                        <span class="description">
+                                        Primary
+                                        </span>
+                                        <button class="delete is-small"></button>
+                                    </span>
+                                    <span class="tag is-primary">
+                                        <span class="description">
+                                        Primary Test
+                                        </span>
+                                        <button class="delete is-small"></button>
+                                    </span>
+                                </div>
+                                <div class="c-toybox_addTagItem">
+                                    <a class="icon c-toybox_addSelectTag">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                    <p class="control">
+                                        <span class="select is-small">
+                                        <select class="c-toybox_selectTags">
+                                            <option>おすすめ記事</option>
+                                            <option>おためし記事</option>
+                                        </select>
+                                        </span>
+                                    </p>
+                                </div>
                             </div>
-                            <div class="editorEditArea">
-                                editorEditArea
+                            <div class="c-toybox_tagConfig">
+                                <div class="c-toybox_configPropTitleContainer">
+                                    <div class="c-toybox_configPropTitle">
+                                        test tag
+                                    </div>
+                                </div>
+                                <div class="c-toybox_taglist">
+                                    <span class="tag is-primary">
+                                        <span class="description">
+                                        Primary
+                                        </span>
+                                        <button class="delete is-small"></button>
+                                    </span>
+                                    <span class="tag is-primary">
+                                        <span class="description">
+                                        Primary
+                                        </span>
+                                        <button class="delete is-small"></button>
+                                    </span>
+                                    <span class="tag is-primary">
+                                        <span class="description">
+                                        Primary
+                                        </span>
+                                        <button class="delete is-small"></button>
+                                    </span>
+                                    <span class="tag is-primary">
+                                        <span class="description">
+                                        Primary Test
+                                        </span>
+                                        <button class="delete is-small"></button>
+                                    </span>
+                                </div>
+                                <div class="c-toybox_addTagItem">
+                                    <a class="icon c-toybox_addSelectTag">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                    <p class="control">
+                                        <span class="select is-small">
+                                        <select class="c-toybox_selectTags">
+                                            <option>おすすめ記事</option>
+                                            <option>おためし記事</option>
+                                        </select>
+                                        </span>
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                        <div id="component-edit0" class="toybox-editor">
-                            <div class="editorHead">
+                    </div>
+                    <div class="l-toybox_configPropEditArea">
+                        <div class="c-toybox_configPropTitle">
+                            <span class="icon">
+                                <i class="fa fa-link"></i>
+                            </span>
+                            <span class="description">
+                                Link
+                            <span>
+                        </div>
+                        <div class="c-toybox_itemLinkConfigs">
+                            <div class="c-toybox_linkConfig">
+                                <div class="c-toybox_configPropTitleContainer">
+                                    <div class="c-toybox_configPropTitle">
+                                        test link
+                                    </div>
+                                </div>
+                                <div class="c-toybox_linkedItems">
+                                    <div class="c-toybox_linkedItem">
+                                        <div class="c-toybox_linkedItemName">
+                                            <span class="icon">
+                                                <i class="fa fa-file"></i>
+                                            </span>
+                                            <span class="description">
+                                                ギャラクティカマグナム
+                                            <span>
+                                        </div>
+                                        <a class="c-toybox_linkedItemClose">
+                                            <span class="icon">
+                                                <i class="fa fa-times"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div class="c-toybox_linkedItem">
+                                        <div class="c-toybox_linkedItemName">
+                                            <span class="icon">
+                                                <i class="fa fa-file"></i>
+                                            </span>
+                                            <span class="description">
+                                                ギャラクティカマグナム
+                                            <span>
+                                        </div>
+                                        <a class="c-toybox_linkedItemClose">
+                                            <span class="icon">
+                                                <i class="fa fa-times"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="c-toybox_linkedItemDragArea">
+                                    <span class="icon">
+                                        <i class="fa fa-folder"></i>
+                                    </span>
+                                    <span class="icon">
+                                        <i class="fa fa-file"></i>
+                                    </span>
+                                    <span class="description">
+                                        Drag Item Here.
+                                    <span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                -->
+
+                <!--configEdit画面-->
+                <div class="l-toybox_configEditArea">
+                    <div class="c-toybox_configTitle">
+                        <span class="icon">
+                            <i class="fa fa-gear"></i>
+                        </span>
+                        <span class="description">
+                            Config
+                        <span>
+                    </div>
+                    <div class="l-toybox_configPropEditArea">
+                        <div class="c-toybox_configPropTitle">
+                            <span class="icon">
+                                <i class="fa fa-tags"></i>
+                            </span>
+                            <span class="description">
+                                Tag
+                            <span>
+                        </div>
+                        <div class="c-toybox_tagConfigs">
+                            <div class="c-toybox_tagConfig">
+                                <div class="c-toybox_configPropTitleContainer">
+                                    <div class="c-toybox_configPropTitle">
+                                        test tag
+                                    </div>
+                                    <div class="c-toybox_configPropClose">
+                                        <span class="icon">
+                                            <i class="fa fa-times"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="c-toybox_taglist">
+                                    <span class="tag is-primary">
+                                        <span class="description">
+                                        Primary
+                                        </span>
+                                        <button class="delete is-small"></button>
+                                    </span>
+                                    <span class="tag is-primary">
+                                        <span class="description">
+                                        Primary
+                                        </span>
+                                        <button class="delete is-small"></button>
+                                    </span>
+                                    <span class="tag is-primary">
+                                        <span class="description">
+                                        Primary
+                                        </span>
+                                        <button class="delete is-small"></button>
+                                    </span>
+                                    <span class="tag is-primary">
+                                        <span class="description">
+                                        Primary Test
+                                        </span>
+                                        <button class="delete is-small"></button>
+                                    </span>
+                                </div>
+                                <a class="c-toybox_addTag">
+                                    <span class="icon">
+                                        <i class="fa fa-plus"></i>
+                                    </span>
+                                    <span class="description">
+                                        タグを追加
+                                    <span>
+                                </a>
+                                <div class="c-toybox_tagDetailConfig">
+                                    <div class="c-toybox_tagMultiSelect">
+                                        <label class="checkbox">
+                                        <input type="checkbox">
+                                        複数選択可
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="c-toybox_tagConfig">
+                                <div class="c-toybox_configPropTitleContainer">
+                                    <div class="c-toybox_configPropTitle">
+                                        test tag
+                                    </div>
+                                    <div class="c-toybox_configPropClose">
+                                        <span class="icon">
+                                            <i class="fa fa-times"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="c-toybox_taglist">
+                                    <span class="tag is-primary">
+                                        <span class="description">
+                                        Primary
+                                        </span>
+                                        <button class="delete is-small"></button>
+                                    </span>
+                                    <span class="tag is-primary">
+                                        <span class="description">
+                                        Primary
+                                        </span>
+                                        <button class="delete is-small"></button>
+                                    </span>
+                                    <span class="tag is-primary">
+                                        <span class="description">
+                                        Primary
+                                        </span>
+                                        <button class="delete is-small"></button>
+                                    </span>
+                                    <span class="tag is-primary">
+                                        <span class="description">
+                                        Primary Test
+                                        </span>
+                                        <button class="delete is-small"></button>
+                                    </span>
+                                </div>
+                                <a class="c-toybox_addTag">
+                                    <span class="icon">
+                                        <i class="fa fa-plus"></i>
+                                    </span>
+                                    <span class="description">
+                                        タグを追加
+                                    <span>
+                                </a>
+                                <div class="c-toybox_tagDetailConfig">
+                                    <div class="c-toybox_tagMultiSelect">
+                                        <label class="checkbox">
+                                        <input type="checkbox">
+                                        複数選択可
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="c-toybox_configButton">
+                            <span class="icon">
+                                <i class="fa fa-tags"></i>
+                            </span>
+                            <span class="description">
+                                新規タグを作成
+                            <span>
+                        </a>
+                    </div>
+
+                    <div class="l-toybox_configPropEditArea">
+                        <div class="c-toybox_configPropTitle">
+                            <span class="icon">
+                                <i class="fa fa-link"></i>
+                            </span>
+                            <span class="description">
+                                Link
+                            <span>
+                        </div>
+                        <div class="c-toybox_linkConfigs">
+                            <div class="c-toybox_linkConfig">
+                                <div class="c-toybox_configPropTitleContainer">
+                                    <div class="c-toybox_configPropTitle">
+                                        test link
+                                    </div>
+                                    <div class="c-toybox_configPropClose">
+                                        <span class="icon">
+                                            <i class="fa fa-times"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="c-toybox_linkDetailConfig">
+                                    <div class="c-toybox_linkSelect">
+                                        <label class="checkbox">
+                                        <input type="checkbox">
+                                        フォルダと関連付け
+                                        </label>
+                                    </div>
+                                    <div class="c-toybox_linkSelect">
+                                        <label class="checkbox">
+                                        <input type="checkbox">
+                                        ファイルと関連付け
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="c-toybox_configButton">
+                            <span class="icon">
+                                <i class="fa fa-link"></i>
+                            </span>
+                            <span class="description">
+                                新規リンクを作成
+                            <span>
+                        </a>
+                    </div>
+                </div>
+
+                <!--contentEdit画面
+                <div class="l-toybox_mainEditArea">
+                    <div class="c-toybox_editors">
+                        <div id="component-edit0" class="c-toybox_editor">
+                            <div class="c-toybox_editorHead editorHead">
                                 <div class="editorTitle">
                                     markdown
                                 </div>
-                                <a class="editorClose">
+                                <a class="c-toybox_editorClose">
                                     <span class="icon">
                                         <i class="fa fa-times"></i>
                                     </span>
                                 </a>
                             </div>
-                            <div class="editorEditArea">
+                            <div class="c-toybox_editorEditArea">
                                 editorEditArea
                             </div>
                         </div>
@@ -203,8 +555,10 @@
                 <div class="l-toybox_previewArea">
                     preview
                 </div>
-                <!--end-->
+                -->
             </div>
+        </div>
+        <div class="l-toybox_fadeLayer">
         </div>
     </div>
 </body>

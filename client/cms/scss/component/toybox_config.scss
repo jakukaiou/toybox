@@ -1,0 +1,222 @@
+//Configアイテム用CSS
+.c-toybox_configTitle {
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 16px;
+    width: 100%;
+    background-color: #e0e0e0;
+    font-weight: bold;
+    color: #222222;
+    font-size: 20px;
+}
+
+.c-toybox_configPropTitle {
+    margin-bottom: 4px;
+}
+
+.c-toybox_configPropTitle .description {
+    font-size: 20px;
+}
+
+.c-toybox_tagConfigs {
+    max-width: 160px;
+}
+
+.c-toybox_tagConfig {
+    border: groove 1px rgba(0, 0, 0, 0.5);
+    margin-top: 8px;
+    margin-bottom: 4px;
+    background-color: #ffffff;
+}
+
+.c-toybox_configPropTitleContainer {
+    border-bottom: groove 1px rgba(0, 0, 0, 0.5);
+    padding-top: 2px;
+    padding-left: 4px;
+    padding-bottom: 2px;
+    background-color: #222222;
+    color: #ffffff;
+    display: flex;
+}
+
+.c-toybox_configPropClose {
+    margin-left: auto;
+}
+
+.c-toybox_configPropClose .icon .fa {
+    font-size: 15px;
+}
+
+.c-toybox_configPropClose:hover {
+    color: #ff4488;
+}
+
+.c-toybox_taglist {
+    padding-right: 8px;
+    padding-left: 4px;
+}
+
+.c-toybox_taglist span.tag {
+    display: flex;
+    height: 20px;
+    width: 100%;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    text-align: center;
+    margin-left: 4px;
+    margin-right: 12px;
+    padding-right: 0px;
+}
+
+.c-toybox_taglist span.tag .description {
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.c-toybox_taglist span.tag button {
+    display: block;
+    margin-left: auto;
+    margin-right: 0px;
+}
+
+.c-toybox_addTag {
+    display: block;
+    background-color: #777777;
+    color: #ffffff;
+    border-radius: 8px;
+    margin-left: 8px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+}
+
+.c-toybox_addTag:hover {
+    color: #00d1b2;
+}
+
+.c-toybox_addTag .icon .fa {
+    font-size: 15px;
+}
+
+.c-toybox_tagDetailConfig {
+    padding-left: 4px;
+    border-top: groove 1px rgba(0, 0, 0, 0.5);
+}
+
+.c-toybox_tagMultiSelect {
+    font-size: 12px;
+}
+
+.c-toybox_linkConfigs {
+    max-width: 160px;
+}
+
+.c-toybox_linkConfig {
+    border: groove 1px rgba(0, 0, 0, 0.5);
+    margin-top: 2px;
+    margin-bottom: 4px;
+    background-color: #ffffff;
+}
+
+.c-toybox_linkConfig > .title {
+    border-bottom: groove 1px rgba(0, 0, 0, 0.5);
+    padding-top: 2px;
+    padding-left: 4px;
+    padding-bottom: 2px;
+    margin-bottom: 2px;
+    background-color: #222222;
+    color: #ffffff;
+}
+
+.c-toybox_linkDetailConfig {
+    padding-left: 4px;
+}
+
+.c-toybox_linkSelect {
+    font-size: 12px;
+}
+
+//File&Folderアイテム用CSS
+.c-toybox_itemTagConfigs {
+    max-width: 160px;
+}
+
+.c-toybox_addTagItem {
+    display: flex;
+    border-top: groove 1px rgba(0, 0, 0, 0.2);
+}
+
+.c-toybox_addSelectTag {
+    width: 24px;
+    color: #222222;
+}
+
+.c-toybox_addSelectTag:hover {
+    color: #00d1b2;
+}
+
+.c-toybox_selectTags {
+    width: 136px;
+}
+
+.c-toybox_itemLinkConfigs {
+    width: 180px;
+}
+
+.c-toybox_linkedItem {
+    display: flex;
+    background-color: #00d1b2;
+    height: 24px;
+    border-bottom: groove 1px rgba(0, 0, 0, 0.5);
+}
+
+.c-toybox_linkedItemName {
+    font-size: 12px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.c-toybox_linkedItemName .icon .fa {
+    font-size: 12px;
+}
+
+.c-toybox_linkedItemClose {
+    color: #222222;
+}
+
+.c-toybox_linkedItemClose:hover {
+    color: #ff4488;
+}
+
+.c-toybox_linkedItemDragArea {
+    height: 48px;
+    position: relative;
+    display: flex;
+    align-items: center; /* 縦方向中央揃え */
+    justify-content: center; /* 横方向中央揃え */
+}
+
+//コンフィグ共通パーツ
+.c-toybox_configButton {
+    display: block;
+    background-color: #ffffff;
+    color: #00d1b2;
+    border: solid 1px #00d1b2;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    width: 180px;
+}
+
+.c-toybox_configButton:hover {
+    color: #ffffff;
+    background-color: #00d1b2;
+}
+
+.c-toybox_configButton .icon .fa {
+    font-size: 15px;
+}

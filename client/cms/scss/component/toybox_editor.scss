@@ -1,0 +1,36 @@
+.c-toybox_editorHead {
+    display: flex;
+    color: #ffffff;
+    background-color: #222222;
+    font-size: 12px;
+    height: 16px;
+    border: groove 1px rgba(200, 230, 150, 0.7);
+    box-sizing: content-box;
+}
+
+.c-toybox_editorHead .icon .fa {
+    font-size: 12px;
+}
+
+.c-toybox_editorHead span {
+    height: 16px;
+}
+
+.c-toybox_editorHead a {
+    color: #ffffff;
+}
+
+.c-toybox_editorHead a:hover {
+    color: #ff4488;
+}
+
+.c-toybox_editorClose {
+    margin-left: auto;
+}
+
+//暫定
+.c-toybox_editorEditArea {
+    background-color: #ffffff;
+    border: groove 1px rgba(200, 230, 150, 0.7);
+    box-sizing: content-box;
+}
