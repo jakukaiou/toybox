@@ -13,10 +13,26 @@
 
 .c-toybox_configPropTitle {
     margin-bottom: 4px;
+    display: none;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.c-toybox_configPropTitle.is-active {
+    display: block;
 }
 
 .c-toybox_configPropTitle .description {
     font-size: 20px;
+}
+
+.c-toybox_configPropTitleInput {
+    display: none;
+}
+
+.c-toybox_configPropTitleInput.is-active {
+    display: block;
 }
 
 .c-toybox_tagConfigs {
