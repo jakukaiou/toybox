@@ -45,7 +45,7 @@ class ToyBoxApp {
 
         window.onload = ()=>{
             console.log('this is awesome app');
-            m.route(document.body,'wonder',{'wonder':new ToyBoxRoot()});
+            //m.route(document.body,'wonder',{'wonder':new ToyBoxRoot()});
         }
     }
 }
