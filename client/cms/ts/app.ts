@@ -178,19 +178,39 @@ class ToyBoxSideBar extends ComponentBasic {
 //サイドバー上でのファイルアイテム
 class ToyBoxFileItem extends ComponentBasic {
     private nameEdit:boolean;
+    private editName:string;
+
+    private file:ToyBoxFile;
 
     constructor(file:ToyBoxFile){
         super();
+        this.file = file;
+
         this.nameEdit = false;
+        this.editName = this.file.name;
 
         this.view = (vnode)=> {
             return [
                 m('div',{class:c('c-toybox_treeItem','c-toybox_file','c-toybox_treeItemName',(this.nameEdit)? 'is-edit':null)},[
                     m('span',{class:c('icon')},[
-                        m('i',{class:c('fa','fa-file'),onclick:()=>{this.nameEdit = !this.nameEdit}})
+                        m('i',{
+                            class:c('fa','fa-file'),
+                            onclick:(e:MouseEvent)=>{
+                                //名前編集モードの切り替え
+                                this.nameEdit = !this.nameEdit; 
+                                this.file.name = this.editName;
+                            }
+                        })
                     ]),
                     m('span',{class:c('description')},file.name),
-                    m('input',{class:c('description'),value:file.name})
+                    m('input',{
+                        class:c('description'),
+                        oninput:m.withAttr('value',(name)=>{
+                            console.log(name);
+                            this.editName = name
+                        }),
+                        value:(this.nameEdit)? this.editName:this.file.name
+                    })
                 ])
             ]
         };
@@ -200,18 +220,23 @@ class ToyBoxFileItem extends ComponentBasic {
 //サイドバー上でのフォルダアイテム
 class ToyBoxFolderItem extends ComponentBasic {
     private nameEdit:boolean;
+    private editName:string;
     private open:boolean;
     private items:Array<ComponentBasic>;
 
+    private folder:ToyBoxFolder;
+
     constructor(folder:ToyBoxFolder){
         super();
+        this.folder = folder;
+
         this.nameEdit = false;
+        this.editName = this.folder.name;
         this.items = new Array();
         this.open = false;
 
         this.oninit = (vnode)=> {
             folder.addItem(new ToyBoxFile('内部ファイル'));
-            console.log(folder);
             this.makeItem(folder.items);
         }
 
@@ -220,10 +245,27 @@ class ToyBoxFolderItem extends ComponentBasic {
                 m('div',{class:c('c-toybox_treeItem','c-toybox_dir')},[
                     m('div',{class:c('c-toybox_dirName','c-toybox_treeItemName',(this.nameEdit)? 'is-edit':null),onclick:()=>{this.open = !this.open}},[
                         m('span',{class:c('icon')},[
-                            m('i',{class:c('fa',(this.open)? 'fa-folder-open':'fa-folder'),onclick:(e:MouseEvent)=>{this.nameEdit = !this.nameEdit; e.stopPropagation();}})
+                            m('i',{
+                                class:c('fa',(this.open)? 'fa-folder-open':'fa-folder'),
+                                onclick:(e:MouseEvent)=>{
+                                    //名前編集モードの切り替え
+                                    this.nameEdit = !this.nameEdit; 
+                                    this.folder.name = this.editName;
+
+                                    //親へのイベント伝播を停止
+                                    e.stopPropagation();
+                                }
+                            })
                         ]),
-                        m('span',{class:c('description')},folder.name),
-                        m('input',{class:c('description'),value:folder.name})
+                        m('span',{class:c('description')},this.folder.name),
+                        m('input',{
+                            class:c('description'),
+                            oninput:m.withAttr('value',(name)=>{
+                                console.log(name);
+                                this.editName = name
+                            }),
+                            value:(this.nameEdit)? this.editName:this.folder.name
+                        })
                     ]),
                     m('div',{class:c('l-toybox_files',(this.open)?'is-active':null)},[
                         _.map(this.items,(item:ComponentBasic)=>{return m(item)})
@@ -253,19 +295,39 @@ class ToyBoxFolderItem extends ComponentBasic {
 //サイドバー上でのコンフィグアイテム
 class ToyBoxConfigItem extends ComponentBasic {
     private nameEdit:boolean;
+    private editName:string;
+
+    private config:ToyBoxConfig;
 
     constructor(config:ToyBoxConfig){
         super();
+        this.config = config;
+
         this.nameEdit = false;
+        this.editName = this.config.name;
 
         this.view = (vnode)=> {
             return [
                 m('div',{class:c('c-toybox_treeItem','c-toybox_config','c-toybox_treeItemName',(this.nameEdit)? 'is-edit':null)},[
                     m('span',{class:c('icon')},[
-                        m('i',{class:c('fa','fa-gear'),onclick:()=>{this.nameEdit = !this.nameEdit}})
+                        m('i',{
+                            class:c('fa','fa-gear'),
+                            onclick:(e:MouseEvent)=>{
+                                //名前編集モードの切り替え
+                                this.nameEdit = !this.nameEdit; 
+                                this.config.name = this.editName;
+                            }
+                        })
                     ]),
                     m('span',{class:c('description')},config.name),
-                    m('input',{class:c('description'),value:config.name})
+                    m('input',{
+                        class:c('description'),
+                        oninput:m.withAttr('value',(name)=>{
+                            console.log(name);
+                            this.editName = name
+                        }),
+                        value:(this.nameEdit)? this.editName:this.config.name
+                    })
                 ])
             ]
         };
