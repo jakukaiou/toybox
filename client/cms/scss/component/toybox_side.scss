@@ -41,3 +41,19 @@
 .c-toybox_treeItem .c-toybox_treeItem {
     padding-left: 16px;
 }
+
+.c-toybox_treeItemName:hover {
+    background-color: #a8c8e8;
+}
+
+.c-toybox_treeItemName.is-edit span.description  {
+    display: none;
+}
+
+.c-toybox_treeItemName input.description {
+    display: none;
+}
+
+.c-toybox_treeItemName.is-edit input.description {
+    display: inline;
+}

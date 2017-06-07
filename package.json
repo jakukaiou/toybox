@@ -16,7 +16,10 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@types/classnames": "^2.2.0",
+    "@types/lodash": "^4.14.65",
     "bulma": "^0.4.2",
+    "classnames": "^2.2.5",
     "consolidate": "^0.14.5",
     "ejs": "^2.5.5",
     "express": "^4.14.0",
@@ -24,6 +27,7 @@
     "font-awesome": "^4.7.0",
     "font-awesome-webpack": "0.0.5-beta.2",
     "less": "^2.7.2",
+    "lodash": "^4.17.4",
     "mithril": "^1.1.1"
   },
   "devDependencies": {

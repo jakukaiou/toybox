@@ -1,6 +1,8 @@
-export default class ToyBoxFile {
+import ToyBoxItem from './toyboxitem';
 
-    constructor(){
+export default class ToyBoxFile extends ToyBoxItem {
 
+    constructor(name){
+        super(name);
     }
 }

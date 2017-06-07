@@ -102,3 +102,11 @@
 .l-toybox_configPropEditArea {
     padding: 10px;
 }
+
+.l-toybox_files {
+    display: none;
+}
+
+.l-toybox_files.is-active {
+    display: block;
+}
