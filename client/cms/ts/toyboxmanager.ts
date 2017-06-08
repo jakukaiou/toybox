@@ -7,19 +7,23 @@ import * as _ from 'lodash';
 export default class ToyBoxManager {
     public site:string = 'toybox project';
 
+    //ファイルの追加メニューを表示するかどうか
+    public addFile:boolean = false;
+
     public side:boolean = true;
     private sideLock:boolean = false;
 
+    public target:ToyBoxItem = null;
     private editmode:string = 'none';
 
 
     public root:ToyBoxFolder;
 
     constructor(){
-        this.root = new ToyBoxFolder('root');
-        this.root.addItem(new ToyBoxFile('ファイル名'));
-        this.root.addItem(new ToyBoxFolder('folder'));
-        this.root.addItem(new ToyBoxConfig('config'));
+        this.root = new ToyBoxFolder('root',this.root);
+        this.root.addItem(new ToyBoxFile('ファイル名',this.root));
+        this.root.addItem(new ToyBoxFolder('folder',this.root));
+        this.root.addItem(new ToyBoxConfig('config',this.root));
 
         _.each(this.root.items,(item:ToyBoxItem)=>{
             //クラス名取得

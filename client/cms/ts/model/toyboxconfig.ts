@@ -1,4 +1,5 @@
 import ToyBoxItem from './toyboxitem';
+import ToyBoxFolder from './toyboxfolder';
 
 enum PropType{
     TAG,
@@ -20,8 +21,8 @@ export default class ToyBoxConfig extends ToyBoxItem {
     private tagProp:Array<TagConfig>;
     private linkProp:Array<LinkConfig>;
 
-    constructor(name){
-        super(name);
+    constructor(name:string,parent:ToyBoxFolder){
+        super(name,parent);
     }
 
     public addTagConfig = ()=>{

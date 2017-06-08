@@ -3,8 +3,8 @@ import ToyBoxItem from './toyboxitem';
 export default class ToyBoxFolder extends ToyBoxItem {
     public items:Array<ToyBoxItem>;
 
-    constructor(name){
-        super(name);
+    constructor(name:string,parent:ToyBoxFolder){
+        super(name,parent);
         this.items = new Array();
     }
 

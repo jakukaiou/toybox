@@ -43,6 +43,10 @@
 }
 
 .c-toybox_treeItemName:hover {
+    background-color: #b8d8f8;
+}
+
+.c-toybox_treeItemName.is-target {
     background-color: #a8c8e8;
 }
 
