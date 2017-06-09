@@ -21,9 +21,6 @@ export default class ToyBoxManager {
 
     constructor(){
         this.root = new ToyBoxFolder('root',this.root);
-        this.root.addItem(new ToyBoxFile('ファイル名',this.root));
-        this.root.addItem(new ToyBoxFolder('folder',this.root));
-        this.root.addItem(new ToyBoxConfig('config',this.root));
 
         _.each(this.root.items,(item:ToyBoxItem)=>{
             //クラス名取得

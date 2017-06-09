@@ -4,6 +4,7 @@
 
 [TODO]
 fontawesome関連webpack設定
-CMSレイアウト作成
+-CMSレイアウト作成
 -configレイアウト作成
 firebase databaseへ投入
+ディレクトリ構成の変更をビューに反映する処理を追加
