@@ -13,7 +13,7 @@ export default class ToyBoxManager {
     public side:boolean = true;
     private sideLock:boolean = false;
 
-    public target:ToyBoxItem = null;
+    public _target:ToyBoxItem = null;
     private editmode:string = 'none';
 
 
@@ -41,5 +41,19 @@ export default class ToyBoxManager {
 
     get sideOpen():boolean {
         return this.side;
+    }
+
+    set target(target:ToyBoxItem) {
+        if(this._target){
+            if(!this._target.edit){
+                this._target = target;
+            }
+        }else{
+            this._target = target;
+        }
+    }
+
+    get target():ToyBoxItem {
+        return this._target;
     }
 }

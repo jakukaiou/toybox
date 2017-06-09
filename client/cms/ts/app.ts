@@ -236,9 +236,12 @@ class ToyBoxFileItem extends ComponentBasic {
                         m('i',{
                             class:c('fa','fa-file'),
                             onclick:(e:MouseEvent)=>{
-                                //名前編集モードの切り替え
-                                this.nameEdit = !this.nameEdit; 
-                                this.file.name = this.editName;
+                                if(state.target === this.file){
+                                    //名前編集モードの切り替え
+                                    this.nameEdit = !this.nameEdit; 
+                                    this.file.name = this.editName;
+                                    this.file.edit = !this.file.edit;
+                                }
                             }
                         })
                     ]),
@@ -299,12 +302,15 @@ class ToyBoxFolderItem extends ComponentBasic {
                             m('i',{
                                 class:c('fa',(this.open)? 'fa-folder-open':'fa-folder'),
                                 onclick:(e:MouseEvent)=>{
-                                    //名前編集モードの切り替え
-                                    this.nameEdit = !this.nameEdit; 
-                                    this.folder.name = this.editName;
+                                    if(state.target === this.folder){
+                                        //名前編集モードの切り替え
+                                        this.nameEdit = !this.nameEdit; 
+                                        this.folder.name = this.editName;
+                                        this.folder.edit = !this.folder.edit;
 
-                                    //親へのイベント伝播を停止
-                                    e.stopPropagation();
+                                        //親へのイベント伝播を停止
+                                        e.stopPropagation();
+                                    }
                                 }
                             })
                         ]),
@@ -372,9 +378,12 @@ class ToyBoxConfigItem extends ComponentBasic {
                         m('i',{
                             class:c('fa','fa-gear'),
                             onclick:(e:MouseEvent)=>{
-                                //名前編集モードの切り替え
-                                this.nameEdit = !this.nameEdit; 
-                                this.config.name = this.editName;
+                                if(state.target === this.config){
+                                    //名前編集モードの切り替え
+                                    this.nameEdit = !this.nameEdit; 
+                                    this.config.name = this.editName;
+                                    this.config.edit = !this.config.edit;
+                                }
                             }
                         })
                     ]),
