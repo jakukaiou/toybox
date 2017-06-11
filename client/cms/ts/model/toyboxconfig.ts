@@ -14,9 +14,6 @@ enum LinkType {
 }
 
 export default class ToyBoxConfig extends ToyBoxItem {
-    //設定ファイルのID
-    private ID:number;
-
     //設定
     private tagProp:Array<TagConfig>;
     private linkProp:Array<LinkConfig>;

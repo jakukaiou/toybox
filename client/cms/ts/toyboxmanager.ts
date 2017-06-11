@@ -14,7 +14,7 @@ export default class ToyBoxManager {
     private sideLock:boolean = false;
 
     public _target:ToyBoxItem = null;
-    private editmode:string = 'none';
+    public editmode:string = 'config';
 
 
     public root:ToyBoxFolder;

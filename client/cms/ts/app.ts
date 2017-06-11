@@ -107,11 +107,11 @@ class ToyBoxNav extends ComponentBasic {
 }
 
 class ToyBoxSideBar extends ComponentBasic {
-    private itemNodes:Array<ComponentBasic>;
+    private itemNodes:{[key: string]: ToyBoxSideItem;};
 
     constructor(state:ToyBoxManager) {
         super();
-        this.itemNodes = new Array();
+        this.itemNodes = {};
 
         this.oninit = (vnode)=>{
             this.makeItem(state,state.root.addItems);
@@ -196,13 +196,13 @@ class ToyBoxSideBar extends ComponentBasic {
             if(item){
                 switch(item.constructor.name){
                     case 'ToyBoxFile':
-                        this.itemNodes.push(new ToyBoxFileItem(state,<ToyBoxFile>item));
+                        this.itemNodes[item.ID] = new ToyBoxFileItem(state,<ToyBoxFile>item,item.ID);
                         break;
                     case 'ToyBoxFolder':
-                        this.itemNodes.push(new ToyBoxFolderItem(state,<ToyBoxFolder>item));
+                        this.itemNodes[item.ID] = new ToyBoxFolderItem(state,<ToyBoxFolder>item,item.ID);
                         break;
                     case 'ToyBoxConfig':
-                        this.itemNodes.push(new ToyBoxConfigItem(state,<ToyBoxConfig>item));
+                        this.itemNodes[item.ID] = new ToyBoxConfigItem(state,<ToyBoxConfig>item,item.ID);
                         break;
                 }
             }
@@ -210,15 +210,26 @@ class ToyBoxSideBar extends ComponentBasic {
     }
 }
 
+class ToyBoxSideItem extends ComponentBasic {
+    public itemID:number;
+    public state:ToyBoxManager;
+
+    constructor(state:ToyBoxManager,itemID:number){
+        super();
+        this.state = state;
+        this.itemID = itemID;
+    }
+}
+
 //サイドバー上でのファイルアイテム
-class ToyBoxFileItem extends ComponentBasic {
+class ToyBoxFileItem extends ToyBoxSideItem {
     private nameEdit:boolean;
     private editName:string;
 
     private file:ToyBoxFile;
 
-    constructor(state:ToyBoxManager,file:ToyBoxFile){
-        super();
+    constructor(state:ToyBoxManager,file:ToyBoxFile,itemID:number){
+        super(state,itemID);
         this.file = file;
 
         this.nameEdit = false;
@@ -261,21 +272,21 @@ class ToyBoxFileItem extends ComponentBasic {
 }
 
 //サイドバー上でのフォルダアイテム
-class ToyBoxFolderItem extends ComponentBasic {
+class ToyBoxFolderItem extends ToyBoxSideItem {
     private nameEdit:boolean;
     private editName:string;
     private open:boolean;
-    private itemNodes:Array<ComponentBasic>;
+    private itemNodes:{[key: string]: ToyBoxSideItem;};
 
     private folder:ToyBoxFolder;
 
-    constructor(state:ToyBoxManager,folder:ToyBoxFolder){
-        super();
+    constructor(state:ToyBoxManager,folder:ToyBoxFolder,itemID:number){
+        super(state,itemID);
         this.folder = folder;
 
         this.nameEdit = false;
         this.editName = this.folder.name;
-        this.itemNodes = new Array();
+        this.itemNodes = {};
         this.open = false;
 
         this.onupdate = (vnode)=> {
@@ -338,13 +349,13 @@ class ToyBoxFolderItem extends ComponentBasic {
             if(item){
                 switch(item.constructor.name){
                     case 'ToyBoxFile':
-                        this.itemNodes.push(new ToyBoxFileItem(state,<ToyBoxFile>item));
+                        this.itemNodes[item.ID] = new ToyBoxFileItem(state,<ToyBoxFile>item,item.ID);
                         break;
                     case 'ToyBoxFolder':
-                        this.itemNodes.push(new ToyBoxFolderItem(state,<ToyBoxFolder>item));
+                        this.itemNodes[item.ID] = new ToyBoxFolderItem(state,<ToyBoxFolder>item,item.ID);
                         break;
                     case 'ToyBoxConfig':
-                        this.itemNodes.push(new ToyBoxConfigItem(state,<ToyBoxConfig>item));
+                        this.itemNodes[item.ID] = new ToyBoxConfigItem(state,<ToyBoxConfig>item,item.ID);
                         break;
                 }
             }
@@ -353,14 +364,14 @@ class ToyBoxFolderItem extends ComponentBasic {
 }
 
 //サイドバー上でのコンフィグアイテム
-class ToyBoxConfigItem extends ComponentBasic {
+class ToyBoxConfigItem extends ToyBoxSideItem {
     private nameEdit:boolean;
     private editName:string;
 
     private config:ToyBoxConfig;
 
-    constructor(state:ToyBoxManager,config:ToyBoxConfig){
-        super();
+    constructor(state:ToyBoxManager,config:ToyBoxConfig,itemID:number){
+        super(state,itemID);
         this.config = config;
 
         this.nameEdit = false;
@@ -403,15 +414,80 @@ class ToyBoxConfigItem extends ComponentBasic {
 }
 
 class ToyBoxMainView extends ComponentBasic {
+    private state:ToyBoxManager;
+
     constructor(state:ToyBoxManager) {
         super();
-
+        this.state = state;
 
         this.view = (vnode)=> {
             return [
-                m('div','hello MainView')
+                m('div',{class:c('f-toybox_mainView-container')},[
+                    m('div',{class:c('l-toybox_mainResizeArea','is-config')}),
+                    m('div',{class:c('l-toybox_mainView')},[
+                        m(this.targetMainView())
+                    ])
+                ])
             ]
         };
+    }
+
+    private targetMainView():ComponentBasic{
+        switch(this.state.editmode){
+            case 'config':
+                return new ToyBoxConfigView(this.state,this.state.target);
+            default:
+                return new ToyBoxConfigView(this.state,this.state.target);
+        }
+    }
+    
+}
+
+class ToyBoxConfigView extends ComponentBasic {
+    private state:ToyBoxManager;
+
+    constructor(state:ToyBoxManager,config:ToyBoxItem){
+        super();
+
+        this.view = (vnode)=> {
+            return [
+                m('div',{class:c('l-toybox_configEditArea')},[
+                    m('div',{class:c('c-toybox_configTitle')},[
+                        m('span',{class:c('icon')},[
+                            m('i',{class:c('fa','fa-gear')})
+                        ]),
+                        m('span',{class:c('description')},'Config'),
+                    ]),
+                    m('div',{class:c('l-toybox_configPropEditArea')},[
+                        m('div',{class:c('c-toybox_configPropTitle','is-active')},[
+                            m('span',{class:c('icon')},[
+                                m('i',{class:c('fa','fa-tags')})
+                            ]),
+                            m('span',{class:c('description')},'Tag'),
+                        ]),
+                        m('div',{class:c('c-toybox_tagConfigs')},[
+                            m('div',{class:c('c-toybox_tagConfig')},[
+                                m('div',{class:'c-toybox_configPropTitleContainer'},[
+                                    m('div',{class:c('c-toybox_configPropTitle','is-active')},'test tag'),
+                                    m('input',{class:c('c-toybox_configPropTitleInput'),value:'test tag'}),
+                                    m('div',{class:c('c-toybox_configPropClose')},[
+                                        m('span',{class:c('icon')},[
+                                            m('i',{class:c('fa','fa-times')})
+                                        ])
+                                    ])
+                                ]),
+                                m('div',{class:c('c-toybox_taglist')},[
+                                    m('span',{class:c('tag','is-primary')},[
+                                        m('span',{class:c('description')},'Primary'),
+                                        m('button',{class:c('delete','is-small')})
+                                    ])
+                                ])
+                            ])
+                        ])
+                    ])
+                ])
+            ]
+        }
     }
 }
 
