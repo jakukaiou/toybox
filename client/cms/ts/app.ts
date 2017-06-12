@@ -139,7 +139,8 @@ class ToyBoxSideBar extends ComponentBasic {
                                 m('span',{
                                     class:c('icon','addItemIcon'),
                                     onclick:()=>{
-                                        state.target.parent.addItem(new ToyBoxFolder('新規フォルダ',state.target.parent));
+                                        //state.target.parent.addItem(new ToyBoxFolder('新規フォルダ',state.target.parent));
+                                        state.addItem(state.target.parent,new ToyBoxFolder('新規フォルダ',state.target.parent,state.nextID));
                                         m.redraw();
                                     }
                                 },[
@@ -149,7 +150,8 @@ class ToyBoxSideBar extends ComponentBasic {
                                 m('span',{
                                     class:c('icon','addItemIcon'),
                                     onclick:()=>{
-                                        state.target.parent.addItem(new ToyBoxFile('新規ファイル',state.target.parent));
+                                        //state.target.parent.addItem(new ToyBoxFile('新規ファイル',state.target.parent));
+                                        state.addItem(state.target.parent,new ToyBoxFile('新規ファイル',state.target.parent,state.nextID));
                                         m.redraw();
                                     }
                                 },[
@@ -159,7 +161,8 @@ class ToyBoxSideBar extends ComponentBasic {
                                 m('span',{
                                     class:c('icon','addItemIcon'),
                                     onclick:()=>{
-                                        state.target.parent.addItem(new ToyBoxConfig('新規コンフィグ',state.target.parent));
+                                        //state.target.parent.addItem(new ToyBoxConfig('新規コンフィグ',state.target.parent));
+                                        state.addItem(state.target.parent,new ToyBoxConfig('新規コンフィグ',state.target.parent,state.nextID));
                                         m.redraw();
                                     }
                                 },[
@@ -481,11 +484,64 @@ class ToyBoxConfigView extends ComponentBasic {
                                         m('span',{class:c('description')},'Primary'),
                                         m('button',{class:c('delete','is-small')})
                                     ])
+                                ]),
+                                m('a',{class:c('c-toybox_addTag')},[
+                                    m('span',{class:c('icon')},[
+                                        m('i',{class:c('fa','fa-tags')})
+                                    ]),
+                                    m('span',{class:c('description')},'タグを追加'),
                                 ])
                             ])
+                        ]),
+                        m('a',{class:c('c-toybox_configButton')},[
+                            m('span',{class:c('icon')},[
+                                m('i',{class:c('fa','fa-tags')})
+                            ]),
+                            m('span',{class:c('description')},'タグを新規作成')
+                        ])
+                    ]),
+                    m('div',{class:c('l-toybox_configPropEditArea')},[
+                        m('div',{class:c('c-toybox_configPropTitle','is-active')},[
+                            m('span',{class:c('icon')},[
+                                m('i',{class:c('fa','fa-link')})
+                            ]),
+                            m('span',{class:c('description')},'Link'),
+                        ]),
+                        m('div',{class:c('c-toybox_linkConfigs')},[
+                            m('div',{class:c('c-toybox_linkConfig')},[
+                                m('div',{class:c('c-toybox_configPropTitleContainer')},[
+                                    m('div',{class:c('c-toybox_configPropTitle')},'test link'),
+                                    m('input',{class:c('c-toybox_configPropTitleInput','is-active'),value:'test tag'}),
+                                    m('div',{class:c('c-toybox_configPropClose')},[
+                                        m('span',{class:c('icon')},[
+                                            m('i',{class:c('fa','fa-times')})
+                                        ])
+                                    ])
+                                ]),
+                                m('div',{class:c('c-toybox_linkDetailConfig')},[
+                                    m('div',{class:'c-toybox_linkSelect'},[
+                                        m('label',{class:c('checkbox')},[
+                                            m('input',{type:'checkbox'}),
+                                            m('span','フォルダと関連付け')
+                                        ])
+                                    ]),
+                                    m('div',{class:'c-toybox_linkSelect'},[
+                                        m('label',{class:c('checkbox')},[
+                                            m('input',{type:'checkbox'}),
+                                            m('span','ファイルと関連付け')
+                                        ])
+                                    ])
+                                ])
+                            ])
+                        ]),
+                        m('a',{class:c('c-toybox_configButton')},[
+                            m('span',{class:c('icon')},[
+                                m('i',{class:c('fa','fa-link')})
+                            ]),
+                            m('span',{class:c('description')},'新規リンクを作成')
                         ])
                     ])
-                ])
+                ]),
             ]
         }
     }

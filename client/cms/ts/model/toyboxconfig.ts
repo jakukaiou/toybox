@@ -18,8 +18,8 @@ export default class ToyBoxConfig extends ToyBoxItem {
     private tagProp:Array<TagConfig>;
     private linkProp:Array<LinkConfig>;
 
-    constructor(name:string,parent:ToyBoxFolder){
-        super(name,parent);
+    constructor(name:string,parent:ToyBoxFolder,ID:number){
+        super(name,parent,ID);
     }
 
     public addTagConfig = ()=>{

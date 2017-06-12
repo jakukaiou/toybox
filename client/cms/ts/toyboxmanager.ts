@@ -16,11 +16,18 @@ export default class ToyBoxManager {
     public _target:ToyBoxItem = null;
     public editmode:string = 'config';
 
+    private _nextID:number;
+
 
     public root:ToyBoxFolder;
 
     constructor(){
-        this.root = new ToyBoxFolder('root',this.root);
+        this._nextID = 0;
+
+        this.root = new ToyBoxFolder('root',this.root,this.nextID);
+
+        const initconfig:ToyBoxConfig = new ToyBoxConfig('設定ファイル',this.root,this.nextID);
+        this.addItem(this.root,initconfig);
 
         _.each(this.root.items,(item:ToyBoxItem)=>{
             //クラス名取得
@@ -55,5 +62,18 @@ export default class ToyBoxManager {
 
     get target():ToyBoxItem {
         return this._target;
+    }
+
+    get nextID():number {
+        this._nextID++;
+        return this._nextID;
+    }
+
+    public addItem(folder:ToyBoxFolder,item:ToyBoxItem){
+        folder.addItem(item);
+        if(item.constructor.name === 'ToyBoxFolder'){
+            const newFolder:ToyBoxFolder = <ToyBoxFolder>item;
+            newFolder.addItem(new ToyBoxConfig('設定ファイル',newFolder,this.nextID));
+        }
     }
 }
