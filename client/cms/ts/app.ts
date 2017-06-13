@@ -6,10 +6,12 @@ import * as m from 'mithril';
 import * as c from 'classnames';
 import * as _ from 'lodash';
 
-import ToyBoxItem from './model/toyboxitem';
-import ToyBoxFile from './model/toyboxfile';
-import ToyBoxFolder from './model/toyboxfolder';
-import ToyBoxConfig from './model/toyboxconfig';
+import ToyBoxItem from '../../model/toyboxitem';
+import ToyBoxFile from '../../model/toyboxfile';
+import ToyBoxFolder from '../../model/toyboxfolder';
+import ToyBoxConfig from '../../model/toyboxconfig';
+
+import ToyBoxEditor from '../../component/basic/editor';
 
 class ComponentBasic implements m.Component<{},{}> {
     public oninit:(vnode:m.VnodeDOM<{},{}>)=>void;
@@ -139,7 +141,6 @@ class ToyBoxSideBar extends ComponentBasic {
                                 m('span',{
                                     class:c('icon','addItemIcon'),
                                     onclick:()=>{
-                                        //state.target.parent.addItem(new ToyBoxFolder('新規フォルダ',state.target.parent));
                                         state.addItem(state.target.parent,new ToyBoxFolder('新規フォルダ',state.target.parent,state.nextID));
                                         m.redraw();
                                     }
@@ -150,7 +151,6 @@ class ToyBoxSideBar extends ComponentBasic {
                                 m('span',{
                                     class:c('icon','addItemIcon'),
                                     onclick:()=>{
-                                        //state.target.parent.addItem(new ToyBoxFile('新規ファイル',state.target.parent));
                                         state.addItem(state.target.parent,new ToyBoxFile('新規ファイル',state.target.parent,state.nextID));
                                         m.redraw();
                                     }
@@ -161,7 +161,6 @@ class ToyBoxSideBar extends ComponentBasic {
                                 m('span',{
                                     class:c('icon','addItemIcon'),
                                     onclick:()=>{
-                                        //state.target.parent.addItem(new ToyBoxConfig('新規コンフィグ',state.target.parent));
                                         state.addItem(state.target.parent,new ToyBoxConfig('新規コンフィグ',state.target.parent,state.nextID));
                                         m.redraw();
                                     }
@@ -426,7 +425,7 @@ class ToyBoxMainView extends ComponentBasic {
         this.view = (vnode)=> {
             return [
                 m('div',{class:c('f-toybox_mainView-container')},[
-                    m('div',{class:c('l-toybox_mainResizeArea','is-config')}),
+                    m('div',{class:c('l-toybox_mainResizeArea',(this.state.sideOpen)? 'is-config':null)}),
                     m('div',{class:c('l-toybox_mainView')},[
                         m(this.targetMainView())
                     ])
@@ -439,6 +438,8 @@ class ToyBoxMainView extends ComponentBasic {
         switch(this.state.editmode){
             case 'config':
                 return new ToyBoxConfigView(this.state,this.state.target);
+            case 'file' :
+                return new ToyBoxFileEditView(this.state,this.state.target);
             default:
                 return new ToyBoxConfigView(this.state,this.state.target);
         }
@@ -543,6 +544,27 @@ class ToyBoxConfigView extends ComponentBasic {
                     ])
                 ]),
             ]
+        }
+    }
+}
+
+class ToyBoxFileEditView extends ComponentBasic {
+    private state:ToyBoxManager;
+
+    constructor(state:ToyBoxManager,file:ToyBoxItem){
+        super();
+
+        this.view = (vnode)=>{
+            return [
+                m('div',{class:c('l-toybox_mainEditArea')},[
+                    m('div',{class:c('c-toybox_editors')},[
+                        m(new ToyBoxEditor())
+                    ])
+                ]),
+                m('div',{class:c('l-toybox_previewArea')},[
+
+                ])
+            ];
         }
     }
 }

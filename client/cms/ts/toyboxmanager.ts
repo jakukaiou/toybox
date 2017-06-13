@@ -1,7 +1,8 @@
-import ToyBoxItem from './model/toyboxitem';
-import ToyBoxFile from './model/toyboxfile';
-import ToyBoxFolder from './model/toyboxfolder';
-import ToyBoxConfig from './model/toyboxconfig';
+import ToyBoxItem from '../../model/toyboxitem';
+import ToyBoxFile from '../../model/toyboxfile';
+import ToyBoxFolder from '../../model/toyboxfolder';
+import ToyBoxConfig from '../../model/toyboxconfig';
+
 import * as _ from 'lodash';
 
 export default class ToyBoxManager {
@@ -14,24 +15,26 @@ export default class ToyBoxManager {
     private sideLock:boolean = false;
 
     public _target:ToyBoxItem = null;
-    public editmode:string = 'config';
+    public editmode:string = 'file';
 
     private _nextID:number;
 
-
     public root:ToyBoxFolder;
+    private items:{[key: number]: ToyBoxItem;};
 
     constructor(){
         this._nextID = 0;
+        this.sideOpen = false;
 
         this.root = new ToyBoxFolder('root',this.root,this.nextID);
+        this.items = {};
 
         const initconfig:ToyBoxConfig = new ToyBoxConfig('設定ファイル',this.root,this.nextID);
         this.addItem(this.root,initconfig);
 
         _.each(this.root.items,(item:ToyBoxItem)=>{
             //クラス名取得
-            console.log(item.constructor.name);
+            //console.log(item.constructor.name);
 
             //型変換
             if(item.constructor.name === 'ToyBoxFolder'){
@@ -70,10 +73,14 @@ export default class ToyBoxManager {
     }
 
     public addItem(folder:ToyBoxFolder,item:ToyBoxItem){
+        //ここの処理を正常化
         folder.addItem(item);
+        this.items[item.ID] = item;
         if(item.constructor.name === 'ToyBoxFolder'){
             const newFolder:ToyBoxFolder = <ToyBoxFolder>item;
             newFolder.addItem(new ToyBoxConfig('設定ファイル',newFolder,this.nextID));
         }
+
+        console.log(this.items);
     }
 }

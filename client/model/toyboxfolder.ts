@@ -11,20 +11,15 @@ export default class ToyBoxFolder extends ToyBoxItem {
 
     constructor(name:string,parent:ToyBoxFolder,ID:number){
         super(name,parent,ID);
-        this.items = new Array();
+        this.items = {};
         this.addItemID = 0;
 
         this.addItems = new Array();
         this.deleteItemIDs = new Array();
-        //const initconfig:ToyBoxConfig = new ToyBoxConfig('設定ファイル',this);
-
-        //this.addItem(initconfig);
     }
 
     public addItem(item:ToyBoxItem,order:number = null){
-        item.ID = this.addItemID;
-
-        this.items[item.ID] = item;
+        this.items[this.addItemID] = item;
         this.addItems.push(item);
 
         this.addItemID++;
