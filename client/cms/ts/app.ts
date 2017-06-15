@@ -50,7 +50,8 @@ class ToyBoxRoot extends ComponentBasic {
                 m(this.nav),
                 m('div',{class: 'f-toybox_base-container'},[
                     m(this.sidebar),
-                    m(this.mainVIew)
+                    m(this.mainVIew),
+                    m('div',{class: c('l-toybox_fadeLayer','is-active')})
                 ])
             ]
         };
@@ -116,33 +117,30 @@ class ToyBoxSideBar extends ComponentBasic {
         this.itemNodes = {};
 
         this.oninit = (vnode)=>{
-            this.makeItem(state,state.root.addItems);
+            
         }
 
         this.onupdate = (vnode)=> {
-            if(state.root.addItems){
-                this.makeItem(state,state.root.addItems);
-            }
+            
         }
 
         this.view = (vnode)=> {
 
             return [
                 m('div',{class:'f-toybox_side-container',},[
-                    m('div',{class:c('l-toybox_side',(state.sideOpen)?'is-active':null)},[
+                    m('div',{class:c('l-toybox_side','is-active')},[
                         m('div',{class:c('c-toybox_siteTitleBar')},[
                             m('div',{class:c('c-toybox_siteTitle','is-edit')},[
                                 m('span',{class:c('icon')},[
                                     m('i',{class:c('fa','fa-caret-down')})
                                 ]),
-                                m('span',{class:c('description')},state.site)
+                                m('span',{class:c('description')},'site name')
                             ]),
-                            m('div',{class:c('c-toybox_sideToolbar',(state.addFile)? 'is-active':null)},[
+                            m('div',{class:c('c-toybox_sideToolbar','is-active')},[
                                 m('span',{
                                     class:c('icon','addItemIcon'),
                                     onclick:()=>{
-                                        state.addItem(state.target.parent,new ToyBoxFolder('新規フォルダ',state.target.parent,state.nextID));
-                                        m.redraw();
+                                        //フォルダ追加処理
                                     }
                                 },[
                                     m('i',{class:c('fa','fa-plus')}),
@@ -151,31 +149,22 @@ class ToyBoxSideBar extends ComponentBasic {
                                 m('span',{
                                     class:c('icon','addItemIcon'),
                                     onclick:()=>{
-                                        state.addItem(state.target.parent,new ToyBoxFile('新規ファイル',state.target.parent,state.nextID));
-                                        m.redraw();
+                                        //ファイル追加処理
                                     }
                                 },[
                                     m('i',{class:c('fa','fa-plus')}),
                                     m('i',{class:c('fa','fa-file')})
                                 ]),
-                                m('span',{
-                                    class:c('icon','addItemIcon'),
-                                    onclick:()=>{
-                                        state.addItem(state.target.parent,new ToyBoxConfig('新規コンフィグ',state.target.parent,state.nextID));
-                                        m.redraw();
-                                    }
-                                },[
-                                    m('i',{class:c('fa','fa-plus')}),
-                                    m('i',{class:c('fa','fa-gear')})
-                                ]),
                             ])
                         ]),
                         m('div',{
                             class:'l-toybox_fileTree',
-                            onmouseover:()=>{state.addFile = true;},
+                            onmouseover:()=>{
+                                //addFileフラグを立てる
+                            },
                             onmouseleave:()=>{
                                 if(!state.target){
-                                    state.addFile = false;
+                                    //addFileフラグを外す
                                 }
                             }
                         },[
@@ -183,32 +172,15 @@ class ToyBoxSideBar extends ComponentBasic {
                         ])
                     ]),
                     m('div',{class:'l-toybox_sideResizer'},[
-                        m('div',{class:'l-toybox_sideResizeToggle',onclick:()=>{state.sideOpen = !state.sideOpen}},[
+                        m('div',{class:'l-toybox_sideResizeToggle',onclick:()=>{
+                            //サイドの開閉処理
+                        }},[
                             m("i.fa.fa-angle-left")
                         ])
                     ])
                 ])
             ]
         };
-    }
-
-    private makeItem(state:ToyBoxManager,items:Array<ToyBoxItem>){
-        while(items.length){
-            const item = items.pop();
-            if(item){
-                switch(item.constructor.name){
-                    case 'ToyBoxFile':
-                        this.itemNodes[item.ID] = new ToyBoxFileItem(state,<ToyBoxFile>item,item.ID);
-                        break;
-                    case 'ToyBoxFolder':
-                        this.itemNodes[item.ID] = new ToyBoxFolderItem(state,<ToyBoxFolder>item,item.ID);
-                        break;
-                    case 'ToyBoxConfig':
-                        this.itemNodes[item.ID] = new ToyBoxConfigItem(state,<ToyBoxConfig>item,item.ID);
-                        break;
-                }
-            }
-        }
     }
 }
 
@@ -425,7 +397,7 @@ class ToyBoxMainView extends ComponentBasic {
         this.view = (vnode)=> {
             return [
                 m('div',{class:c('f-toybox_mainView-container')},[
-                    m('div',{class:c('l-toybox_mainResizeArea',(this.state.sideOpen)? 'is-config':null)}),
+                    m('div',{class:c('l-toybox_mainResizeArea','is-config')}),
                     m('div',{class:c('l-toybox_mainView')},[
                         m(this.targetMainView())
                     ])
@@ -435,7 +407,7 @@ class ToyBoxMainView extends ComponentBasic {
     }
 
     private targetMainView():ComponentBasic{
-        switch(this.state.editmode){
+        switch(this.state.view.editmode){
             case 'config':
                 return new ToyBoxConfigView(this.state,this.state.target);
             case 'file' :
@@ -447,6 +419,7 @@ class ToyBoxMainView extends ComponentBasic {
     
 }
 
+//コンフィグアイテムの編集画面
 class ToyBoxConfigView extends ComponentBasic {
     private state:ToyBoxManager;
 
@@ -548,6 +521,7 @@ class ToyBoxConfigView extends ComponentBasic {
     }
 }
 
+//ファイルの編集画面
 class ToyBoxFileEditView extends ComponentBasic {
     private state:ToyBoxManager;
 

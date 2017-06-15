@@ -6,55 +6,33 @@ import ToyBoxConfig from '../../model/toyboxconfig';
 import * as _ from 'lodash';
 
 export default class ToyBoxManager {
+    //サイト名
     public site:string = 'toybox project';
 
-    //ファイルの追加メニューを表示するかどうか
-    public addFile:boolean = false;
+    //編集ターゲット保存用の内部変数
+    private _target:ToyBoxItem = null;
 
-    public side:boolean = true;
-    private sideLock:boolean = false;
-
-    public _target:ToyBoxItem = null;
-    public editmode:string = 'file';
-
+    //新規作成アイテムに割り当てるID
     private _nextID:number;
 
+    //ルートディレクトリ
     public root:ToyBoxFolder;
+
+    //アイテムデータの保存配列
     private items:{[key: number]: ToyBoxItem;};
 
+    //CMSのビュー制御情報が入るオブジェクト
+    public view:ToyBoxManagerView;
+
     constructor(){
-        this._nextID = 0;
-        this.sideOpen = false;
-
-        this.root = new ToyBoxFolder('root',this.root,this.nextID);
-        this.items = {};
-
-        const initconfig:ToyBoxConfig = new ToyBoxConfig('設定ファイル',this.root,this.nextID);
-        this.addItem(this.root,initconfig);
-
-        _.each(this.root.items,(item:ToyBoxItem)=>{
-            //クラス名取得
-            //console.log(item.constructor.name);
-
-            //型変換
-            if(item.constructor.name === 'ToyBoxFolder'){
-                let folder = <ToyBoxFolder>item;
-            }
-        });
+        //toyboxのビュー制御オブジェクト
+        this.view = new ToyBoxManagerView();
     }
 
-    set sideOpen (bool:boolean){
-        if(!this.sideLock){
-            this.side = bool;
-        }
-    }
-
-    get sideOpen():boolean {
-        return this.side;
-    }
-
+    //ターゲット変更用のsetter
     set target(target:ToyBoxItem) {
         if(this._target){
+            //ターゲットが編集中でなければターゲットを変更する
             if(!this._target.edit){
                 this._target = target;
             }
@@ -62,25 +40,46 @@ export default class ToyBoxManager {
             this._target = target;
         }
     }
+}
 
-    get target():ToyBoxItem {
-        return this._target;
+class ToyBoxManagerView {
+    //サイドが開いているかどうか
+    private _side:boolean;
+
+    //サイドがロックされているかどうか
+    private _sideLock:boolean = false;
+
+    //フェードレイヤーが有効かどうか
+    public fade:boolean;
+
+    //ファイルの追加メニューを表示するかどうか
+    public addFile:boolean = false;
+
+    //編集モード
+    public editmode:string = 'file';
+
+    constructor(){
+        this._side = false;
+        this.fade = false;
+        this.addFile = false;
     }
 
-    get nextID():number {
-        this._nextID++;
-        return this._nextID;
-    }
-
-    public addItem(folder:ToyBoxFolder,item:ToyBoxItem){
-        //ここの処理を正常化
-        folder.addItem(item);
-        this.items[item.ID] = item;
-        if(item.constructor.name === 'ToyBoxFolder'){
-            const newFolder:ToyBoxFolder = <ToyBoxFolder>item;
-            newFolder.addItem(new ToyBoxConfig('設定ファイル',newFolder,this.nextID));
+    //サイドが開いているかどうか
+    set sideOpen (bool:boolean){
+        if(!this.sideLock){
+            this._side = bool;
         }
+    }
 
-        console.log(this.items);
+    get sideOpen():boolean {
+        return this._side;
+    }
+
+    public sideLock() {
+        this._sideLock = true;
+    }
+
+    public sideUnLock() {
+        this._sideLock = false;
     }
 }
