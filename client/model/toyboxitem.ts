@@ -12,8 +12,7 @@ export default class ToyBoxItem {
 
     public parent:ToyBoxFolder;
 
-    constructor(name:string,parent:ToyBoxFolder,ID:number){
-        this.name = name;
+    constructor(parent:ToyBoxFolder,ID:number){
         this.ID = ID;
         this.parent = parent;
         this.edit = false;

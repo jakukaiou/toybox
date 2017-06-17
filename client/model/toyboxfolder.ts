@@ -2,26 +2,42 @@ import ToyBoxItem from './toyboxitem';
 import ToyBoxConfig from './toyboxconfig';
 
 export default class ToyBoxFolder extends ToyBoxItem {
+    //追加されているアイテムのリスト
     public items:{[key: number]: ToyBoxItem;};
-    public addItemID:number;
+
+    //コンフィグファイル
+    public config:ToyBoxConfig;
 
     //ミスリルビューで使用する
     public addItems:Array<ToyBoxItem>;
-    public deleteItemIDs:Array<number>;
+    //public deleteItemIDs:Array<number>;
 
-    constructor(name:string,parent:ToyBoxFolder,ID:number){
-        super(name,parent,ID);
+    constructor(parent:ToyBoxFolder,ID:number,info:Object = null){
+        super(parent,ID);
         this.items = {};
-        this.addItemID = 0;
 
         this.addItems = new Array();
-        this.deleteItemIDs = new Array();
+        //this.deleteItemIDs = new Array();
+
+        if(info){
+            //ロード情報にしたがってフォルダを構成する
+        }else{
+            //コンフィグファイルを作成
+            this.config = new ToyBoxConfig(this,this.ID+1);
+            this.addItem(this.config);
+
+            this.name = '新規フォルダ';
+        }
     }
 
+    //ToyBoxManagerを通して利用する
     public addItem(item:ToyBoxItem,order:number = null){
-        this.items[this.addItemID] = item;
+        this.items[item.ID] = item;
         this.addItems.push(item);
+    }
 
-        this.addItemID++;
+    //ToyBoxManagerを通して利用する
+    public deleteItem(itemID:number){
+
     }
 }

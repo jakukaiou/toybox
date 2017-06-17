@@ -3,7 +3,13 @@ import ToyBoxFolder from './toyboxfolder';
 
 export default class ToyBoxFile extends ToyBoxItem {
 
-    constructor(name:string,parent:ToyBoxFolder,ID:number){
-        super(name,parent,ID);
+    constructor(parent:ToyBoxFolder,ID:number,info:Object = null){
+        super(parent,ID);
+
+        if(info){
+            //ロード情報にしたがってコンフィグを構成する
+        }else{
+            this.name = '新規ファイル';
+        }
     }
 }

@@ -10,6 +10,8 @@ export default class FirebaseControl {
         this.firebaseApp = this.init();
         this.firebaseAuth = this.firebaseApp.auth();
         this.firebaseDB = this.firebaseApp.database();
+
+        console.log('firebase ready');
     }
 
     private init(){
