@@ -13,6 +13,8 @@ import ToyBoxConfig from '../../model/toyboxconfig';
 
 import ToyBoxEditor from '../../component/basic/editor';
 
+import * as TB from '../../common/const';
+
 class ComponentBasic implements m.Component<{},{}> {
     public oninit:(vnode:m.VnodeDOM<{},{}>)=>void;
     public oncreate:(vnode:m.VnodeDOM<{},{}>)=>void;
@@ -491,29 +493,8 @@ class ToyBoxConfigView extends ComponentBasic {
                                 m('span',{class:c('description')},'Tag'),
                             ]),
                             m('div',{class:c('c-toybox_tagConfigs')},[
-                                m('div',{class:c('c-toybox_tagConfig')},[
-                                    m('div',{class:'c-toybox_configPropTitleContainer'},[
-                                        m('div',{class:c('c-toybox_configPropTitle','is-active')},'test tag'),
-                                        m('input',{class:c('c-toybox_configPropTitleInput'),value:'test tag'}),
-                                        m('div',{class:c('c-toybox_configPropClose')},[
-                                            m('span',{class:c('icon')},[
-                                                m('i',{class:c('fa','fa-times')})
-                                            ])
-                                        ])
-                                    ]),
-                                    m('div',{class:c('c-toybox_taglist')},[
-                                        m('span',{class:c('tag','is-primary')},[
-                                            m('span',{class:c('description')},'Primary'),
-                                            m('button',{class:c('delete','is-small')})
-                                        ])
-                                    ]),
-                                    m('a',{class:c('c-toybox_addTag')},[
-                                        m('span',{class:c('icon')},[
-                                            m('i',{class:c('fa','fa-tags')})
-                                        ]),
-                                        m('span',{class:c('description')},'タグを追加'),
-                                    ])
-                                ])
+                                m(new ToyBoxTagConfigView(this.manager)),
+                                m(new ToyBoxTagConfigView(this.manager))
                             ]),
                             m('a',{class:c('c-toybox_configButton')},[
                                 m('span',{class:c('icon')},[
@@ -564,6 +545,42 @@ class ToyBoxConfigView extends ComponentBasic {
                             ])
                         ])
                     ]),
+                ])
+            ]
+        }
+    }
+}
+
+class ToyBoxTagConfigView extends ComponentBasic {
+    private manager:ToyBoxManager;
+
+    constructor(manager:ToyBoxManager,){
+        super();
+
+        this.view = ()=>{
+            return [
+                m('div',{class:c('c-toybox_tagConfig')},[
+                    m('div',{class:'c-toybox_configPropTitleContainer'},[
+                        m('div',{class:c('c-toybox_configPropTitle','is-active')},'test tag'),
+                        m('input',{class:c('c-toybox_configPropTitleInput'),value:'test tag'}),
+                        m('div',{class:c('c-toybox_configPropClose')},[
+                            m('span',{class:c('icon')},[
+                                m('i',{class:c('fa','fa-times')})
+                            ])
+                        ])
+                    ]),
+                    m('div',{class:c('c-toybox_taglist')},[
+                        m('span',{class:c('tag','is-primary')},[
+                            m('span',{class:c('description')},'Primary'),
+                            m('button',{class:c('delete','is-small')})
+                        ])
+                    ]),
+                    m('a',{class:c('c-toybox_addTag')},[
+                        m('span',{class:c('icon')},[
+                            m('i',{class:c('fa','fa-tags')})
+                        ]),
+                        m('span',{class:c('description')},'タグを追加'),
+                    ])
                 ])
             ]
         }

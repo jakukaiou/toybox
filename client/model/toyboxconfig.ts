@@ -1,17 +1,8 @@
 import ToyBoxItem from './toyboxitem';
 import ToyBoxFolder from './toyboxfolder';
 
-enum PropType{
-    TAG,
-    LINK
-}
-
-enum LinkType {
-    NONE,
-    FILE,
-    FOLDER,
-    BOTH
-}
+import TagConfig from './toyboxtagconfig';
+import LinkConfig from './toyboxlinkconfig';
 
 export default class ToyBoxConfig extends ToyBoxItem {
     //設定
@@ -37,33 +28,3 @@ export default class ToyBoxConfig extends ToyBoxItem {
     }
 }
 
-class LinkConfig {
-    private linkType:LinkType;
-
-    constructor(){
-        
-    }
-
-    //リンクタイプをセット
-    public setLinkType = (linkType:LinkType)=>{
-        this.linkType = linkType;
-    }
-}
-
-class TagConfig {
-    private tags:Array<string>;
-
-    constructor(){
-        this.tags = [];
-    }
-
-    //タグを追加
-    public addTag = (tagname:string)=>{
-        this.tags.push(tagname);
-    }
-
-    //タグをひとつ削除
-    public removeTag = (tagnumber:number)=>{
-        this.tags.splice(tagnumber,1);
-    }
-}
