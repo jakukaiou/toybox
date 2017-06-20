@@ -2,8 +2,17 @@
 .c-toybox_configTitle {
     padding-left: 10px;
     padding-top: 5px;
+    width: 100%;
+    background-color: #e0e0e0;
+    font-weight: bold;
+    color: #222222;
+    font-size: 20px;
+}
+
+.c-toybox_configItemTitle {
+    padding-left: 10px;
+    padding-top: 5px;
     padding-bottom: 5px;
-    margin-bottom: 16px;
     width: 100%;
     background-color: #e0e0e0;
     font-weight: bold;

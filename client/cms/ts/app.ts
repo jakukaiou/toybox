@@ -484,6 +484,26 @@ class ToyBoxConfigView extends ComponentBasic {
                                 m('i',{class:c('fa','fa-gear')})
                             ]),
                             m('span',{class:c('description')},this.config.name),
+                            m('div',{class:c('tabs','is-right','is-boxed','l-toybox_configTabArea')},[
+                                m('ul',[
+                                    m('li',{class:c('l-toybox_configTabBox','is-active')},[
+                                        m('a',{href:'#'},[
+                                            m('span',{class:c('icon','is-small')},[
+                                                m('i',{class:c('fa','fa-file')},)
+                                            ]),
+                                            m('span',{class:c('description')},'File')
+                                        ])
+                                    ]),
+                                    m('li',{class:c('l-toybox_configTabBox')},[
+                                        m('a',{href:'#'},[
+                                            m('span',{class:c('icon','is-small')},[
+                                                m('i',{class:c('fa','fa-folder')},)
+                                            ]),
+                                            m('span',{class:c('description')},'Folder')
+                                        ])
+                                    ])
+                                ])
+                            ])
                         ]),
                         m('div',{class:c('l-toybox_configPropEditArea')},[
                             m('div',{class:c('c-toybox_configPropTitle','is-active')},[
@@ -600,7 +620,7 @@ class ToyBoxItemConfigView extends ComponentBasic {
                 m('div',{class:c('l-toybox_mainResizeArea','is-config')}),
                 m('div',{class:c('l-toybox_mainView')},[
                     m('div',{class:c('l-toybox_configEditArea')},[
-                        m('div',{class:c('c-toybox_configTitle')},[
+                        m('div',{class:c('c-toybox_configItemTitle')},[
                             m('span',{class:c('icon')},[
                                 m('i',{class:c('fa','fa-file')})
                             ]),
