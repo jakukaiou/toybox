@@ -15,6 +15,21 @@ import ToyBoxEditor from '../../component/basic/editor';
 
 import * as TB from '../../common/const';
 
+class Test {
+    //クラスをnewしないタイプのmithrilViewを検討する
+    //以下のようなmithrilComponentを返す関数を作成するようにする？
+    public static makeTab(){
+        return {
+            oninit:(vnode:m.VnodeDOM<{},{}>)=>{
+                console.log('makeTab!!');
+            },
+            view:(vnode:m.VnodeDOM<{},{}>)=>{
+                return m('div','makeTabtest');
+            }
+        }
+    }
+}
+
 class ComponentBasic implements m.Component<{},{}> {
     public oninit:(vnode:m.VnodeDOM<{},{}>)=>void;
     public oncreate:(vnode:m.VnodeDOM<{},{}>)=>void;
@@ -707,7 +722,8 @@ class ToyBoxTopView extends ComponentBasic {
             return [
                 m('div',{class:c('l-toybox_mainResizeArea','is-config')}),
                 m('div',{class:c('l-toybox_mainView')},[
-                    m('div','content')
+                    m('div','content'),
+                    m(Test.makeTab())
                 ])
             ];
         }

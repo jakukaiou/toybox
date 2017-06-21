@@ -37,7 +37,7 @@ export default class ToyBoxManager {
         this.firebase = new FirebaseControl();
 
         //アイテムのルートフォルダ
-        this.root = new ToyBoxFolder(null,0);
+        this.root = new ToyBoxFolder(null,0,null);
         this.root.name = 'Root';
 
         //アイテム配列の初期化
@@ -47,7 +47,7 @@ export default class ToyBoxManager {
             this._nextID = _.size(this.items);
         }else{
             this._nextID = 0;
-            this.items[this.nextID] = this.root.config;
+            this.items[this.nextID] = this.root.folderConfig;
         }
     }
 
@@ -102,7 +102,7 @@ export default class ToyBoxManager {
         parent.addItem(newFolder);
 
         //コンフィグファイルをitemsに格納
-        this.items[this.nextID] = newFolder.config;
+        this.items[this.nextID] = newFolder.folderConfig;
     }
 }
 

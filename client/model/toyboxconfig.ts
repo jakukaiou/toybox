@@ -5,12 +5,17 @@ import TagConfig from './toyboxtagconfig';
 import LinkConfig from './toyboxlinkconfig';
 
 export default class ToyBoxConfig extends ToyBoxItem {
-    //設定
-    private tagProp:Array<TagConfig>;
-    private linkProp:Array<LinkConfig>;
+    //ファイル設定
+    private fileTagProp:Array<TagConfig>;
+    private fileLinkProp:Array<LinkConfig>;
+
+    //フォルダ設定
+    private folderTagProp:Array<TagConfig>;
+    private folderLinkProp:Array<LinkConfig>;
+
 
     constructor(parent:ToyBoxFolder,ID:number,info:Object = null){
-        super(parent,ID);
+        super(parent,ID,null);
 
         if(info){
             //ロード情報にしたがってコンフィグを構成する
@@ -20,11 +25,11 @@ export default class ToyBoxConfig extends ToyBoxItem {
     }
 
     public addTagConfig = ()=>{
-        this.tagProp.push(new TagConfig());
+        //this.tagProp.push(new TagConfig());
     }
 
     public addLinkConfig = ()=>{
-        this.linkProp.push(new LinkConfig());
+        //this.linkProp.push(new LinkConfig());
     }
 }
 

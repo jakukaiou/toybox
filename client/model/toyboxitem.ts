@@ -1,4 +1,5 @@
 import ToyBoxFolder from './toyboxfolder';
+import ToyBoxConfig from './toyboxconfig';
 
 export default class ToyBoxItem {
     public name:string;
@@ -12,9 +13,12 @@ export default class ToyBoxItem {
 
     public parent:ToyBoxFolder;
 
-    constructor(parent:ToyBoxFolder,ID:number){
+    public configs:Array<ToyBoxConfig>;
+
+    constructor(parent:ToyBoxFolder,ID:number,configs:Array<ToyBoxConfig>){
         this.ID = ID;
         this.parent = parent;
         this.edit = false;
+        this.configs = configs;
     }
 }
