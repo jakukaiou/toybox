@@ -1,8 +1,15 @@
-export default class TagConfig {
-    private tags:Array<string>;
+import ToyBoxProp from './toyboxprop';
+
+export default class ToyBoxTagConfig extends ToyBoxProp {
+    public name:string;
+    public tags:Array<string>;
 
     constructor(){
+        super();
+        this.name = '新規タグ';
+
         this.tags = [];
+        this.tags.push('テストタグ');
     }
 
     //タグを追加

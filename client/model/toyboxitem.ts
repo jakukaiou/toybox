@@ -15,10 +15,13 @@ export default class ToyBoxItem {
 
     public configs:Array<ToyBoxConfig>;
 
+    public realized:boolean;
+
     constructor(parent:ToyBoxFolder,ID:number,configs:Array<ToyBoxConfig>){
         this.ID = ID;
         this.parent = parent;
         this.edit = false;
         this.configs = configs;
+        this.realized = false;
     }
 }

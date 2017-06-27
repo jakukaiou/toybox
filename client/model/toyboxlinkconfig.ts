@@ -1,8 +1,10 @@
-export default class LinkConfig {
+import ToyBoxProp from './toyboxprop';
+
+export default class ToyBoxLinkConfig extends ToyBoxProp {
     private linkType:string;
 
     constructor(){
-        
+        super();
     }
 
     //リンクタイプをセット

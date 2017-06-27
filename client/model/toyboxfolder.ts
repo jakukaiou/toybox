@@ -9,16 +9,14 @@ export default class ToyBoxFolder extends ToyBoxItem {
     //フォルダのコンフィグファイル
     public folderConfig:ToyBoxConfig;
 
-    //ミスリルビューで使用する
-    public addItems:Array<ToyBoxItem>;
-    //public deleteItemIDs:Array<number>;
+    //フォルダにファイルが追加されたときtrueになる
+    private fileAdded:boolean;
 
     constructor(parent:ToyBoxFolder,ID:number,info:Object = null){
         let configs = (parent)? parent.childconfig:null;
         super(parent,ID,configs);
         this.items = {};
-
-        this.addItems = new Array();
+        this.fileAdded = false;
 
         if(info){
             //ロード情報にしたがってフォルダを構成する
@@ -31,18 +29,28 @@ export default class ToyBoxFolder extends ToyBoxItem {
         }
     }
 
-    //ToyBoxManagerを通して利用する
+    //アイテムを追加 ToyBoxManagerを通して利用する
     public addItem(item:ToyBoxItem,order:number = null){
         this.items[item.ID] = item;
-        this.addItems.push(item);
+        this.fileAdded = true;
     }
 
-    //ToyBoxManagerを通して利用する
+    //アイテムを削除 ToyBoxManagerを通して利用する
     public deleteItem(itemID:number){
 
     }
 
     get childconfig(){
         return _.compact(_.concat(this.configs,this.folderConfig));
+    }
+
+    get itemUpdate(){
+        return this.fileAdded;
+    }
+
+
+    //ファイル追加の反映を通知
+    public reflected(){
+        this.fileAdded = false;
     }
 }

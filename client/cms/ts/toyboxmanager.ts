@@ -7,6 +7,8 @@ import FirebaseControl from './../../firebase/fireBaseControl';
 
 import * as _ from 'lodash';
 
+import * as TB from '../../common/const';
+
 export default class ToyBoxManager {
     //サイト名
     public site:string = 'toybox project';
@@ -88,6 +90,9 @@ export default class ToyBoxManager {
 
         //parentに作成したファイルを追加
         parent.addItem(newFile);
+
+        //作成したファイルを返す
+        return newFile;
     }
 
     //フォルダを新規作成
@@ -103,6 +108,9 @@ export default class ToyBoxManager {
 
         //コンフィグファイルをitemsに格納
         this.items[this.nextID] = newFolder.folderConfig;
+
+        //作成したフォルダを返す
+        return newFolder;
     }
 }
 
@@ -119,9 +127,12 @@ class ToyBoxManagerView {
     //ファイルの追加メニューを表示するかどうか
     public addFile:boolean;
 
+    //editmodeが切り替わったことをviewに通知する変数
+    public switched:boolean;
+
     //編集モード
     //fileEdit:ファイル内容編集 configEdit:コンフィグ定義編集 configSet:コンフィグ編集 none:初期状態
-    public editmode:string;
+    public editmode:number;
 
     constructor(){
         this._side = true;
@@ -129,7 +140,9 @@ class ToyBoxManagerView {
         this.addFile = false;
         this.fade = false;
         this.addFile = false;
-        this.editmode = 'none';
+        this.editmode = TB.EDITMODE.NONE;
+
+        this.switched = false;
 
         this.setStartMode();
     }
@@ -157,26 +170,37 @@ class ToyBoxManagerView {
 
     //ファイル編集モードに変更
     public setFileEditMode() {
-        this.editmode = 'fileEdit';
+        this.editmode = TB.EDITMODE.FILEEDIT;
         this.sideUnLock();
         this.sideOpen = false;
+        this.switched = true;
     }
 
-    //コンフィグ定義編集モードに変更
-    public setConfigEditMode() {
-        this.editmode = 'configEdit';
+    //ファイルコンフィグ定義編集モードに変更
+    public setFileConfigEditMode() {
+        this.editmode = TB.EDITMODE.FILECONFIGEDIT;
         this.sideLock();
+        this.switched = true;
+    }
+
+    //フォルダコンフィグ定義編集モードに変更
+    public setFolderConfigEditMode() {
+        this.editmode = TB.EDITMODE.FILECONFIGEDIT;
+        this.sideLock();
+        this.switched = true;
     }
 
     //コンフィグ編集モードに変更
     public setConfigMode() {
-        this.editmode = 'configSet';
+        this.editmode = TB.EDITMODE.CONFIGSET;
         this.sideLock();
+        this.switched = true;
     }
 
     //初期モードに変更
     public setStartMode() {
-        this.editmode = 'none';
+        this.editmode = TB.EDITMODE.NONE;
         this._sideLock;
+        this.switched = true;
     }
 }
